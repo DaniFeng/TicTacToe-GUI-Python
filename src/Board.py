@@ -48,7 +48,9 @@ class Board:
         self.moves_made = 0
 
     def player_ones_turn(self):
-        return self.player_ones_turn
+        if self.player_ones_turn:
+            return True
+        return False
 
     def make_move(self, row, col):
         if self.board[row][col] != '-':
@@ -65,7 +67,7 @@ class Board:
     def get_board(self):
         return self.board
 
-    def player_one_has_won(self):
+    def game_over(self):
         if self.moves_made < 5:
             return False
 
@@ -80,27 +82,3 @@ class Board:
             col += 1
 
         return check_forward_diag(self.board) and check_back_diag(self.board)
-
-    def print_board(self):
-        print("    1    2    3")
-        for row in self.board:
-            index = 0
-            to_print = "" + str(index) + "   "
-            while index < len(row):
-                to_print += row[index] + "    "
-                index += 1
-            print(to_print)
-
-
-t = Board()
-
-t.print_board()
-t.make_move(0, 0)
-t.make_move(0, 1)
-t.make_move(1, 0)
-t.make_move(1, 1)
-t.make_move(2, 0)
-print(t.player_one_has_won())
-t.print_board()
-
-
